@@ -5,7 +5,7 @@ export default function Login() {
     ev.preventDefault();
   };
   return (
-    <from onSubmit={onSubmit}>
+    <form onSubmit={onSubmit}>
       <h1 className="title">Login into Your Account</h1>
       <input placeholder="Email" type="email" />
       <input type="password" placeholder="Password" />
@@ -13,6 +13,6 @@ export default function Login() {
       <p className="message">
         Not Registered? <Link to="/signup">Create an account</Link>
       </p>
-    </from>
+    </form>
   );
 }

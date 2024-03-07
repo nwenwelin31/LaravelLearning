@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import PropTypes from 'prop-types';
 
 const StateContext = createContext({
   user: null,
@@ -7,7 +8,7 @@ const StateContext = createContext({
   setToken: () => {},
 })
 
-export const ContextProvider = ({children}) => {
+export const ContextProvider = ({ children }) => {
   const [user, setUser] = useState({name:'John'});
   const [token, _setToken] = useState(null);
   const setToken = (token) => {
@@ -30,5 +31,8 @@ export const ContextProvider = ({children}) => {
     </StateContext.Provider>
   )
 }
-
+// Add PropTypes validation
+ContextProvider.propTypes = {
+  children: PropTypes.node.isRequired
+};
 export const useStateContext = () => useContext(StateContext)
