@@ -11,16 +11,18 @@ export default function Signup() {
 
   const [errors,setErrors] = useState({});
   const {setUser, setToken} = useStateContext();
+
   const onSubmit = (ev) => {
     ev.preventDefault();
-    const payLoad = {
+
+    const payload = {
       name:nameRef.current.value,
       email:emailRef.current.value,
       password:passwordRef.current.value,
-      passwordConfirmation:passwordConfirmationRef.current.value,
+      password_confirmation:passwordConfirmationRef.current.value,
     }
-    //form data
-    axiosClient.post('/signup',payLoad)
+    // form data
+    axiosClient.post('/signup',payload)
     .then(({data}) => {
       setUser(data.user);
       setToken(data.token);
@@ -31,15 +33,19 @@ export default function Signup() {
         setErrors(response.data.errors);
       }
     })
-  };
+  }
+
   return (
     <form onSubmit={onSubmit}>
       <h1 className="title">Sign up for free</h1>
-      {errors && <div className="alert">
+      {console.log(errors)}
+      {/* {errors &&
+      <div className="alert">
           {Object.keys(errors).map(key => {
             <p key={key}>{errors[key][0]}</p>
           })}
-      </div>}
+      </div>
+      } */}
       <input ref={nameRef} placeholder="Full Name" type="text" />
       <input ref={emailRef} placeholder="Email Address" type="email" />
       <input ref={passwordRef} type="password" placeholder="Password" />
